@@ -186,8 +186,8 @@ static CGPoint const placeholderInsets = {0, 4};
 - (void)animateViewsForTextEntry {
     if (self.text.length == 0) {
         [UIView animateWithDuration:0.35 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.placeholderLabel.frame = CGRectMake(10, self.placeholderLabel.frame.origin.y, CGRectGetWidth(self.placeholderLabel.frame), CGRectGetHeight(self.placeholderLabel.frame));
-            self.placeholderLabel.alpha = 0;
+            self.placeholderLabel.frame = CGRectMake(self.activePlaceholderPoint.x, self.placeholderLabel.frame.origin.y, CGRectGetWidth(self.placeholderLabel.frame), CGRectGetHeight(self.placeholderLabel.frame));
+            //            self.placeholderLabel.alpha = 0;
         } completion:^(BOOL finished) {
             if (self.didBeginEditingHandler != nil) {
                 self.didBeginEditingHandler();
@@ -203,6 +203,7 @@ static CGPoint const placeholderInsets = {0, 4};
 //    }];
     
     self.activeBorderLayer.frame = [self rectForBorderThickness:activeBorderThickness isFilled:YES];
+    self.inactiveBorderLayer.hidden = YES;
 }
 
 - (void)animateViewsForTextDisplay {
@@ -217,6 +218,7 @@ static CGPoint const placeholderInsets = {0, 4};
         }];
         
         self.activeBorderLayer.frame = [self rectForBorderThickness:activeBorderThickness isFilled:NO];
+        self.inactiveBorderLayer.hidden = NO;
     }
 }
 
@@ -277,7 +279,7 @@ static CGPoint const placeholderInsets = {0, 4};
             break;
     }
     
-    self.placeholderLabel.frame = CGRectMake(originX, textRect.size.height/2, CGRectGetWidth(self.placeholderLabel.bounds), CGRectGetHeight(self.placeholderLabel.bounds));
+    self.placeholderLabel.frame = CGRectMake(originX, textRect.size.height/2 + 4, CGRectGetWidth(self.placeholderLabel.bounds), CGRectGetHeight(self.placeholderLabel.bounds));
     self.activePlaceholderPoint = CGPointMake(self.placeholderLabel.frame.origin.x, self.placeholderLabel.frame.origin.y-self.placeholderLabel.frame.size.height-placeholderInsets.y);
 }
 
