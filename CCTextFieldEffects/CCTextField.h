@@ -10,8 +10,6 @@
 
 /**
  *  Closure executed when an animation has been completed
- *
- *  @param type The type of animatino a TextFieldEffect can perform.
  */
 typedef void(^AnimationCompletionHandler)(void);
 

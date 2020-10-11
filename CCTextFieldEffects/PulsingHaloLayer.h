@@ -12,7 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface PulsingHaloLayer : CALayer
+@interface PulsingHaloLayer : CALayer <CAAnimationDelegate>
 
 /**
  *	The default value of this property is @c 60pt.
