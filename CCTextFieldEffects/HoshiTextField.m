@@ -187,7 +187,7 @@ static CGPoint const placeholderInsets = {0, 4};
     if (self.text.length == 0) {
         [UIView animateWithDuration:0.35 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             self.placeholderLabel.frame = CGRectMake(self.activePlaceholderPoint.x, self.placeholderLabel.frame.origin.y, CGRectGetWidth(self.placeholderLabel.frame), CGRectGetHeight(self.placeholderLabel.frame));
-            //            self.placeholderLabel.alpha = 0;
+            self.placeholderLabel.alpha = 0;
         } completion:^(BOOL finished) {
             if (self.didBeginEditingHandler != nil) {
                 self.didBeginEditingHandler();
@@ -198,9 +198,9 @@ static CGPoint const placeholderInsets = {0, 4};
     [self layoutPlaceholderInTextRect];
     self.placeholderLabel.frame = CGRectMake(self.activePlaceholderPoint.x, self.activePlaceholderPoint.y, CGRectGetWidth(self.placeholderLabel.frame), CGRectGetHeight(self.placeholderLabel.frame));
     
-//    [UIView animateWithDuration:0.2 animations:^{
-//        self.placeholderLabel.alpha = 0.5;
-//    }];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.placeholderLabel.alpha = 0.5;
+    }];
     
     self.activeBorderLayer.frame = [self rectForBorderThickness:activeBorderThickness isFilled:YES];
     self.inactiveBorderLayer.hidden = YES;
@@ -210,7 +210,7 @@ static CGPoint const placeholderInsets = {0, 4};
     if (self.text.length == 0) {
         [UIView animateWithDuration:0.35 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:2.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             [self layoutPlaceholderInTextRect];
-//            self.placeholderLabel.alpha = 1.0;
+            self.placeholderLabel.alpha = 1.0;
         } completion:^(BOOL finished) {
             if (self.didEndEditingHandler != nil) {
                 self.didEndEditingHandler();
